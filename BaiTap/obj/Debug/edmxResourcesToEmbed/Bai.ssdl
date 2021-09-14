@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BaitaplonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Discription" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepId" />
+    </Key>
+    <Property Name="DepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TotalEmployee" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpoyeeId" />
+    </Key>
+    <Property Name="EmpoyeeId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateStart" Type="datetime" />
+    <Property Name="DepId" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderOff">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Size" Type="nvarchar" MaxLength="5" />
+    <Property Name="Discount" Type="float" />
+    <Property Name="DateOrder" Type="datetime" />
+    <Property Name="NodeCustom" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmployeeOrder" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="OrderOn">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Size" Type="nvarchar" MaxLength="5" />
+    <Property Name="Discount" Type="float" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="RequiredDate" Type="datetime" />
+    <Property Name="NodeCustom" Type="nvarchar" MaxLength="100" />
+    <Property Name="ShipAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="CustomName" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmployeeOrder" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Price" Type="float" />
+    <Property Name="CategoryId" Type="int" />
+  </EntityType>
+  <Association Name="FK__Employee__DepId__1920BF5C">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOff__Employ__1CF15040">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="OrderOff" Type="Self.OrderOff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpoyeeId" />
+      </Principal>
+      <Dependent Role="OrderOff">
+        <PropertyRef Name="EmployeeOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOff__Produc__1BFD2C07">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderOff" Type="Self.OrderOff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderOff">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOn__Employe__20C1E124">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="OrderOn" Type="Self.OrderOn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpoyeeId" />
+      </Principal>
+      <Dependent Role="OrderOn">
+        <PropertyRef Name="EmployeeOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOn__Product__1FCDBCEB">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderOn" Type="Self.OrderOn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderOn">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Categor__1273C1CD">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BaitaplonModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderOff" EntityType="Self.OrderOff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderOn" EntityType="Self.OrderOn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Employee__DepId__1920BF5C" Association="Self.FK__Employee__DepId__1920BF5C">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOff__Employ__1CF15040" Association="Self.FK__OrderOff__Employ__1CF15040">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="OrderOff" EntitySet="OrderOff" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOff__Produc__1BFD2C07" Association="Self.FK__OrderOff__Produc__1BFD2C07">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderOff" EntitySet="OrderOff" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOn__Employe__20C1E124" Association="Self.FK__OrderOn__Employe__20C1E124">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="OrderOn" EntitySet="OrderOn" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOn__Product__1FCDBCEB" Association="Self.FK__OrderOn__Product__1FCDBCEB">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderOn" EntitySet="OrderOn" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Categor__1273C1CD" Association="Self.FK__Product__Categor__1273C1CD">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

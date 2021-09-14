@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BaitaplonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Discription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__1273C1CD" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepId" />
+    </Key>
+    <Property Name="DepId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TotalEmployee" Type="Int32" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__DepId__1920BF5C" FromRole="Department" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpoyeeId" />
+    </Key>
+    <Property Name="EmpoyeeId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateStart" Type="DateTime" Precision="3" />
+    <Property Name="DepId" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Employee__DepId__1920BF5C" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="OrderOffs" Relationship="Self.FK__OrderOff__Employ__1CF15040" FromRole="Employee" ToRole="OrderOff" />
+    <NavigationProperty Name="OrderOns" Relationship="Self.FK__OrderOn__Employe__20C1E124" FromRole="Employee" ToRole="OrderOn" />
+  </EntityType>
+  <EntityType Name="OrderOff">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Size" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="DateOrder" Type="DateTime" Precision="3" />
+    <Property Name="NodeCustom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeOrder" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__OrderOff__Employ__1CF15040" FromRole="OrderOff" ToRole="Employee" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__OrderOff__Produc__1BFD2C07" FromRole="OrderOff" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="OrderOn">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Size" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="RequiredDate" Type="DateTime" Precision="3" />
+    <Property Name="NodeCustom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShipAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CustomName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeOrder" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__OrderOn__Employe__20C1E124" FromRole="OrderOn" ToRole="Employee" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__OrderOn__Product__1FCDBCEB" FromRole="OrderOn" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__1273C1CD" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrderOffs" Relationship="Self.FK__OrderOff__Produc__1BFD2C07" FromRole="Product" ToRole="OrderOff" />
+    <NavigationProperty Name="OrderOns" Relationship="Self.FK__OrderOn__Product__1FCDBCEB" FromRole="Product" ToRole="OrderOn" />
+  </EntityType>
+  <Association Name="FK__Product__Categor__1273C1CD">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__DepId__1920BF5C">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOff__Employ__1CF15040">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="OrderOff" Type="Self.OrderOff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpoyeeId" />
+      </Principal>
+      <Dependent Role="OrderOff">
+        <PropertyRef Name="EmployeeOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOn__Employe__20C1E124">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="OrderOn" Type="Self.OrderOn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpoyeeId" />
+      </Principal>
+      <Dependent Role="OrderOn">
+        <PropertyRef Name="EmployeeOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOff__Produc__1BFD2C07">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderOff" Type="Self.OrderOff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderOff">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderOn__Product__1FCDBCEB">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderOn" Type="Self.OrderOn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderOn">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BaitaplonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="OrderOffs" EntityType="Self.OrderOff" />
+    <EntitySet Name="OrderOns" EntityType="Self.OrderOn" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <AssociationSet Name="FK__Product__Categor__1273C1CD" Association="Self.FK__Product__Categor__1273C1CD">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__DepId__1920BF5C" Association="Self.FK__Employee__DepId__1920BF5C">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOff__Employ__1CF15040" Association="Self.FK__OrderOff__Employ__1CF15040">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="OrderOff" EntitySet="OrderOffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOn__Employe__20C1E124" Association="Self.FK__OrderOn__Employe__20C1E124">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="OrderOn" EntitySet="OrderOns" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOff__Produc__1BFD2C07" Association="Self.FK__OrderOff__Produc__1BFD2C07">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderOff" EntitySet="OrderOffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderOn__Product__1FCDBCEB" Association="Self.FK__OrderOn__Product__1FCDBCEB">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderOn" EntitySet="OrderOns" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

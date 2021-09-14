@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 10.25" name="Baitaplon">
+  <DataContextMoniker Name="/BaitaplonDataContext" />
+  <nestedChildShapes>
+    <classShape Id="5ba184e6-9db6-4b16-88e8-c4cfc2f69531" absoluteBounds="6.75, 4.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/BaitaplonDataContext/Acount" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6ba3accc-12a1-4cc0-b286-ee5b20391c23" absoluteBounds="6.765, 5.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="96545776-8911-40cf-a3bd-86d3425b0c82" absoluteBounds="3.5, 8.375, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/BaitaplonDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d14ea31-28dd-47a2-85c9-f8cb62f6fc97" absoluteBounds="3.515, 8.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="546b3a24-92b6-4bcc-b2e5-88c2ecad59d0" absoluteBounds="3.5, 5.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/BaitaplonDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a52e666-651e-40be-9d1c-c46a39859b33" absoluteBounds="3.515, 5.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="de9b9842-99d8-47b2-9b70-a8671a933eda" absoluteBounds="0.75, 1.375, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/BaitaplonDataContext/Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc172ef3-f6fa-45ed-9afc-f9b0fb970039" absoluteBounds="0.765, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f649687e-851b-4930-9c20-4928671e0bce" absoluteBounds="3.5, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/BaitaplonDataContext/Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9719e1e-b5c0-4b01-ad16-21cde7c143ba" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6978cf80-9199-4138-b3db-a75743104cc2" absoluteBounds="9, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/BaitaplonDataContext/OrderDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d28d8e22-f1c2-449f-8c95-3162fa29a456" absoluteBounds="9.015, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59a8de5f-e622-4c48-be50-fc6dfc988ec7" absoluteBounds="6.25, 1.25, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/BaitaplonDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="477ffa8a-9e9c-446d-a99a-7f2e8fafc64a" absoluteBounds="6.265, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="df759985-ce31-4a65-bcf3-3feb7ca7f0e8" absoluteBounds="6.25, 8.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/BaitaplonDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0acf2b1a-5c92-4cce-a526-7baad45c0286" absoluteBounds="6.265, 8.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.06814697265625); (3.5 : 2.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BaitaplonDataContext/Department/Department_Employee" />
+      <nodes>
+        <classShapeMoniker Id="de9b9842-99d8-47b2-9b70-a8671a933eda" />
+        <classShapeMoniker Id="f649687e-851b-4930-9c20-4928671e0bce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 2.13544840494792); (9 : 2.13544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BaitaplonDataContext/Order/Order_OrderDetail" />
+      <nodes>
+        <classShapeMoniker Id="59a8de5f-e622-4c48-be50-fc6dfc988ec7" />
+        <classShapeMoniker Id="6978cf80-9199-4138-b3db-a75743104cc2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.67234537760417); (6.46875 : 6.67234537760417); (6.46875 : 3.02089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BaitaplonDataContext/Customer/Customer_Order" />
+      <nodes>
+        <classShapeMoniker Id="546b3a24-92b6-4bcc-b2e5-88c2ecad59d0" />
+        <classShapeMoniker Id="59a8de5f-e622-4c48-be50-fc6dfc988ec7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.13544840494792); (6.25 : 2.13544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BaitaplonDataContext/Employee/Employee_Order" />
+      <nodes>
+        <classShapeMoniker Id="f649687e-851b-4930-9c20-4928671e0bce" />
+        <classShapeMoniker Id="59a8de5f-e622-4c48-be50-fc6dfc988ec7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 9.16429768880208); (10 : 9.16429768880208); (10 : 3.34780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BaitaplonDataContext/Product/Product_OrderDetail" />
+      <nodes>
+        <classShapeMoniker Id="df759985-ce31-4a65-bcf3-3feb7ca7f0e8" />
+        <classShapeMoniker Id="6978cf80-9199-4138-b3db-a75743104cc2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 9.06814697265625); (6.25 : 9.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BaitaplonDataContext/Category/Category_Product" />
+      <nodes>
+        <classShapeMoniker Id="96545776-8911-40cf-a3bd-86d3425b0c82" />
+        <classShapeMoniker Id="df759985-ce31-4a65-bcf3-3feb7ca7f0e8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
